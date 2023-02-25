@@ -4,7 +4,7 @@ import (
 	"io"
 	"log"
 	"os"
-
+    "io/ioutil"
 	"github.com/alist-org/alist/v3/cmd/flags"
 	"github.com/alist-org/alist/v3/internal/conf"
 	"github.com/alist-org/alist/v3/pkg/utils"
@@ -51,6 +51,8 @@ func Log() {
 		}
 		logrus.SetOutput(w)
 	}
-	log.SetOutput(logrus.StandardLogger().Out)
+	log.SetOutput(ioutil.Discard)
+	// log.SetOutput(logrus.StandardLogger().Out)
 	utils.Log.Infof("init logrus...")
+	utils.Log.SetOutput(ioutil.Discard)
 }
